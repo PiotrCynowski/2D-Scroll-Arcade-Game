@@ -32,7 +32,7 @@ public class PlayerBullet : MonoBehaviour, IReturningToPool
         }
     }
 
-    private void OnCollisionEnter2D()
+    private void OnTriggerEnter2D()
     {
         thisBulletDestroyed.Invoke(gameObject);
     }

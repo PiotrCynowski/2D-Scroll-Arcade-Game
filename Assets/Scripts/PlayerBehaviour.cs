@@ -5,20 +5,19 @@ using Piotr.SpawnWithPool;
 public class PlayerBehaviour : MonoBehaviour
 {
     [SerializeField] private PlayerBullet bulletPrefab;
+    [Range(0.5f, 5)]
+    [SerializeField] private float bulletDelay;
+    [Range(0.5f, 15)]
     [SerializeField] private float yAxisMoveSpeed;
+
+    private float nextfire;
+    private float screenYBound;
+
+    private bool playerActive;
 
     private Rigidbody2D rigidBody;
     private Animator animator;
-
-    private float moveInY;
-    private float screenYBound;
-
     private Transform barrel;
-  
-    public float bulletDelay;
-    private float nextfire;
-
-    private bool playerActive;
 
     private SpawnWithPool bulletSpawner;
 
@@ -48,7 +47,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         playerActive = !isGameOver;
 
-        if (isGameOver)
+        if (!isGameOver)
         {
             rigidBody.velocity = Vector2.zero;
             transform.position = new Vector3(transform.position.x, 0, 0);
@@ -59,7 +58,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (playerActive)
         {
-            moveInY = Input.GetAxis("Vertical") * yAxisMoveSpeed; 
+            float moveInY = Input.GetAxis("Vertical") * yAxisMoveSpeed; 
             rigidBody.velocity = new Vector2(0, moveInY);
 
             animator.SetFloat("Vertical", moveInY); 

@@ -25,6 +25,7 @@ public class PlayerStats : MonoBehaviour
     [Range(1, 9)]
     public int playerStartLifes;
 
+    #region attributes
     // TIMER
     private float _timer;
 
@@ -46,7 +47,6 @@ public class PlayerStats : MonoBehaviour
             timerText.text = minutes + ":" + seconds;
         }
     }
-    //
 
     // PLAYER STATS
     private int _playerScore;
@@ -112,7 +112,18 @@ public class PlayerStats : MonoBehaviour
             playerTextLifes.text = "Lives: " + _playerLifes; 
         }
     }
-    //
+    #endregion
+
+    public void StatsReset()
+    {
+        PlayerLifes = playerStartLifes;
+        Timer = timeForMissionInSeconds;
+
+        PlayerLastScore = PlayerScore;
+
+        PlayerScore = 0;
+    }
+
 
     private void Awake()
     {
@@ -147,10 +158,10 @@ public class PlayerStats : MonoBehaviour
             Timer -= Time.deltaTime;
         }
 
-        if (Input.anyKey && !isGameStarted) //for game start
+        if (Input.anyKey && !isGameStarted) //start game from stats menu
         {
             panelStats.SetActive(false);
-            PlayerLastScore = PlayerScore;
+            StatsReset();
 
             onGameOver(false);
 
@@ -160,20 +171,12 @@ public class PlayerStats : MonoBehaviour
     }
 
 
-    public void StatsReset()
-    {
-        PlayerLifes = playerStartLifes;
-        Timer = timeForMissionInSeconds;
-
-        PlayerScore = 0;
-    }
-
     private IEnumerator GameOver()
     {
         isTimerActive = false;
 
         onGameOver(true);
-
+     
         PlayerPrefs.SetInt("LastScore", PlayerScore);
 
         if (PlayerScore > PlayerBestResult)
@@ -187,7 +190,5 @@ public class PlayerStats : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         isGameStarted = false;
-
-        StatsReset();
     }
 }

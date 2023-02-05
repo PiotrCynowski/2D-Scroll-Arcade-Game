@@ -10,9 +10,11 @@ public class EnemyBehaviour : MonoBehaviour, IReturningToPool
 
     private int currentEnemyHP;
 
+
     public void OnInitReturningToPool(Action<GameObject> objectForPoolRelease)
     {
-        thisEnemyKilled = objectForPoolRelease;   
+        thisEnemyKilled = objectForPoolRelease;
+        currentEnemyHP = enemyHP;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
