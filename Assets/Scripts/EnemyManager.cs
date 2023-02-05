@@ -22,6 +22,8 @@ public class EnemyManager : MonoBehaviour
     private Vector2[] enemyYStartPos;
     private Vector3 enemeiesStart, enemiesTarget;
 
+    private Coroutine SpawnCoroutine;
+
     private SpawnWithPool enemySpawner;
 
     private void Start()
@@ -39,19 +41,17 @@ public class EnemyManager : MonoBehaviour
 
         }
         enemySpawner.Pool.Clear();
-
-        StartCoroutine(SpawnEnemyGroup());
     }
 
     private void GameRestart(bool isGameOver)
     {
         if (isGameOver)
         {
-            isSpawning = false;
+            StopCoroutine(SpawnCoroutine);
         }
         else
         {
-            StartCoroutine(SpawnEnemyGroup());
+            SpawnCoroutine = StartCoroutine(SpawnEnemyGroup());
         }
     }
 
@@ -109,7 +109,10 @@ public class EnemyManager : MonoBehaviour
 
         foreach(Transform enemy in groupToMove)
         {
-           enemySpawner.Pool.Release(enemy.gameObject);
+            if (enemy.gameObject.activeInHierarchy)
+            {
+                enemySpawner.Pool.Release(enemy.gameObject);
+            }
         }
 
         yield return new WaitUntil(() => groupToMove.childCount <= 0);

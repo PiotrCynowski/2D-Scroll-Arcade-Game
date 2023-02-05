@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3935549811662072829}
+  - component: {fileID: 4454676202906397409}
   m_Layer: 0
   m_Name: PlayerStats
   m_TagString: Untagged
@@ -32,6 +33,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4454676202906397409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826220783466167545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a48770fde150d4aa9ed37e6707b4d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTextLastScore: {fileID: 4454676203796984730}
+  playerTextScore: {fileID: 4454676204448957696}
+  playerTextBestResult: {fileID: 4454676203207161390}
+  playerTextLifes: {fileID: 4454676203755642302}
+  timerText: {fileID: 4454676203121543023}
+  panelStats: {fileID: 4454676203195906325}
+  timeForMissionInSeconds: 15
+  playerStartLifes: 1
 --- !u!1 &4454676203121543026
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,7 +602,6 @@ GameObject:
   - component: {fileID: 4454676204217126851}
   - component: {fileID: 4454676204217126852}
   - component: {fileID: 4454676204217126853}
-  - component: {fileID: 4454676204217126849}
   m_Layer: 5
   m_Name: Canvas_PlayerStats
   m_TagString: Untagged
@@ -673,24 +693,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4454676204217126849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4454676204217126854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7a48770fde150d4aa9ed37e6707b4d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerText: {fileID: 4454676203121543023}
-  panelStats: {fileID: 4454676203195906325}
-  playerTextScore: {fileID: 4454676204448957696}
-  playerTextLastScore: {fileID: 4454676203796984730}
-  playerTextBestResult: {fileID: 4454676203207161390}
-  playerTextLifes: {fileID: 4454676203755642302}
 --- !u!1 &4454676204448957699
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,10 @@ public class PlayerBullet : MonoBehaviour, IReturningToPool
 
     void OnBecameInvisible()
     {
-        thisBulletDestroyed.Invoke(gameObject);
+        if (gameObject.activeSelf)
+        {
+            thisBulletDestroyed.Invoke(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D()

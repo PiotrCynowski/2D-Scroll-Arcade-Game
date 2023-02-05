@@ -220,4 +220,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundImage: {fileID: 4077913234747573891}
-  xPosBckgImg: 0
+  xPosBckgImg: 0.1

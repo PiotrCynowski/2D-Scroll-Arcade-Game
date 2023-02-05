@@ -154,7 +154,8 @@ public class PlayerStats : MonoBehaviour
 
             onGameOver(false);
 
-            isGameStarted = true;
+            isTimerActive = true;
+            isGameStarted = true;         
         }
     }
 
@@ -165,8 +166,6 @@ public class PlayerStats : MonoBehaviour
         Timer = timeForMissionInSeconds;
 
         PlayerScore = 0;
-
-        isTimerActive = true;
     }
 
     private IEnumerator GameOver()

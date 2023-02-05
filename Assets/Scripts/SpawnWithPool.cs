@@ -14,7 +14,6 @@ namespace Piotr.SpawnWithPool
         private readonly int maxPoolSize = 10;
         private int lastSpawn = 0;
 
-        //public GameObject[] toSpawn;
         private Transform elementsContainer;       
         private List<GameObject> poolElements = new List<GameObject>();
 
@@ -89,7 +88,10 @@ namespace Piotr.SpawnWithPool
             {
                 foreach (GameObject element in poolElements)
                 {
-                    Pool.Release(element);
+                    if (element.activeInHierarchy)
+                    {
+                        Pool.Release(element);
+                    }
                 }
             }
         }

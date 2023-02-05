@@ -45,10 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesPrefabs:
-  - {fileID: 8142636721177111205, guid: fc63efd4b39141a4cb7715e4621ce990, type: 3}
-  - {fileID: 8142636721177111205, guid: e95608e514ece4247b4fc71b81850fdf, type: 3}
+  - {fileID: 2641778381087645838, guid: fc63efd4b39141a4cb7715e4621ce990, type: 3}
+  - {fileID: 2641778381087645838, guid: e95608e514ece4247b4fc71b81850fdf, type: 3}
   timeBetweenEnemyGroupSpawn: 3
   enemiesTotalTimeForReachingTarget: 4
   verticalOffsetBetweenEnemies: 1.5
   maxEnemiesInYAxis: 5
-  durationOfReachingTargetByEnemies: 5
