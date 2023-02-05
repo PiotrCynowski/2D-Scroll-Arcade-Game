@@ -30,7 +30,7 @@ public class EnemyBehaviour : MonoBehaviour, IReturningToPool
         }
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         currentEnemyHP = enemyHP;
     }

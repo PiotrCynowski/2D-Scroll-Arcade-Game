@@ -14,17 +14,17 @@ public class PlayerBullet : MonoBehaviour, IReturningToPool
     }
 
 
-    void Start()
+    private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
         rigidBody.MovePosition(rigidBody.position + bulletSpeed * Vector2.right * Time.fixedDeltaTime);
     }
 
-    void OnBecameInvisible()
+    private void OnBecameInvisible()
     {
         if (gameObject.activeSelf)
         {
