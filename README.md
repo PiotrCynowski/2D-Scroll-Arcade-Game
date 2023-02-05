@@ -2,9 +2,11 @@
 
 In main scene there are 4 prefabs:
 
-- Background Scrolled Image - to control scroll speed in X axis of background 
+- Background Scrolled Image - 
+float X pos Bckg Img - to control scroll speed in X axis of background 
 
-- Player Stats - 
+
+- Player Stats - with attributes for Player last score, best result
 
 - PlayerObject
 
