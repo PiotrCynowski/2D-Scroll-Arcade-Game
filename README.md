@@ -12,4 +12,4 @@ float X pos Bckg Img - to control scroll speed in X axis of background
 
 - EnemyManager - to controll position, spawn time, and number of enemeis 
 - references of Enemy Manager 
-- enemies prefabs - 
+- enemies prefabs - gameobjects with enemy behaviour scripts
