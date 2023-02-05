@@ -4,18 +4,15 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class EnemyBehaviour : MonoBehaviour, IReturningToPool
 {
-    private Action<GameObject> thisEnemyKilled;
+    public Action<GameObject> thisEnemyKilled;
 
     [SerializeField] private int enemyHP; 
-    [SerializeField] private int enemySpeed;
 
     private int currentEnemyHP;
-    private bool isReadyToUse;
 
     public void OnInitReturningToPool(Action<GameObject> objectForPoolRelease)
     {
-        thisEnemyKilled = objectForPoolRelease;
-        currentEnemyHP = enemyHP;
+        thisEnemyKilled = objectForPoolRelease;   
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,18 +28,9 @@ public class EnemyBehaviour : MonoBehaviour, IReturningToPool
         }
     }
 
-    void OnBecameInvisible()
-    {
-        if (!isReadyToUse)
-        {
-            isReadyToUse = true;
-            thisEnemyKilled.Invoke(gameObject);
-        }
-    }
-
     void OnDisable()
     {
-        currentEnemyHP = 3;
+        currentEnemyHP = enemyHP;
     }
 
     private void TakeDamage()
@@ -55,8 +43,7 @@ public class EnemyBehaviour : MonoBehaviour, IReturningToPool
                 PlayerStats.Instance.PlayerScore++;
             }
 
-            isReadyToUse = true;
-            thisEnemyKilled.Invoke(gameObject);
+           thisEnemyKilled.Invoke(gameObject);
         }     
     }
 }

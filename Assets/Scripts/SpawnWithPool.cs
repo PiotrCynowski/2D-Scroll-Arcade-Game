@@ -7,13 +7,15 @@ namespace Piotr.SpawnWithPool
 {
     public class SpawnWithPool
     {
+        public List<GameObject> toSpawn = new List<GameObject>();
+
         // Collection checks will throw errors if we try to release an item that is already in the pool.
         private readonly bool collectionChecks = true;
         private readonly int maxPoolSize = 10;
         private int lastSpawn = 0;
 
-        public GameObject[] toSpawn;
-        private Transform elementsContainer;
+        //public GameObject[] toSpawn;
+        private Transform elementsContainer;       
         private List<GameObject> poolElements = new List<GameObject>();
 
         private IObjectPool<GameObject> m_Pool;
@@ -38,7 +40,7 @@ namespace Piotr.SpawnWithPool
         #region poolOperations
         private GameObject CreatePooledItem()
         {
-            if (lastSpawn >= toSpawn.Length - 1)
+            if (lastSpawn >= toSpawn.Count - 1)
             {
                 lastSpawn = 0;
             }
@@ -59,8 +61,7 @@ namespace Piotr.SpawnWithPool
         }
 
         private void OnReturnedToPool(GameObject system)
-        {
-            system.transform.parent = elementsContainer;
+        {         
             system.gameObject.SetActive(false);
         }
 
@@ -78,6 +79,7 @@ namespace Piotr.SpawnWithPool
 
         public void ReleaseFromPool(GameObject released)
         {
+            released.transform.parent = elementsContainer;
             Pool.Release(released);
         }
 

@@ -4,6 +4,7 @@ using Piotr.SpawnWithPool;
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator), typeof(BoxCollider2D))]
 public class PlayerBehaviour : MonoBehaviour
 {
+    [SerializeField] private PlayerBullet bulletPrefab;
     [SerializeField] private float yAxisMoveSpeed;
 
     private Rigidbody2D rigidBody;
@@ -13,8 +14,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float screenYBound;
 
     private Transform barrel;
-    public PlayerBullet bulletPrefab;
-
+  
     public float bulletDelay;
     private float nextfire;
 
@@ -40,8 +40,7 @@ public class PlayerBehaviour : MonoBehaviour
         PlayerStats.onGameOver += IsPlayerActive;
 
         bulletSpawner = new SpawnWithPool();
-        bulletSpawner.toSpawn = new GameObject[1];
-        bulletSpawner.toSpawn[0] = bulletPrefab.gameObject;
+        bulletSpawner.toSpawn.Add(bulletPrefab.gameObject);
         bulletSpawner.Pool.Clear();
     }
 

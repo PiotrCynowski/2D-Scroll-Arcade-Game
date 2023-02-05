@@ -6,7 +6,7 @@ using Piotr.SpawnWithPool;
 public class EnemyManager : MonoBehaviour
 {
     [Header("Enemy Settings")]
-    public GameObject[] enemiesPrefabs;
+    public EnemyBehaviour[] enemiesPrefabs;
 
     [Range(0.5f, 5)]
     [SerializeField] private float timeBetweenEnemyGroupSpawn;
@@ -33,7 +33,11 @@ public class EnemyManager : MonoBehaviour
         SetupEnemiesStartPositions(screenBounds);
 
         enemySpawner = new SpawnWithPool();
-        enemySpawner.toSpawn = enemiesPrefabs;
+        foreach(EnemyBehaviour enemy in enemiesPrefabs)
+        {
+            enemySpawner.toSpawn.Add(enemy.gameObject);
+
+        }
         enemySpawner.Pool.Clear();
 
         StartCoroutine(SpawnEnemyGroup());
@@ -101,6 +105,11 @@ public class EnemyManager : MonoBehaviour
             groupToMove.position = Vector3.Lerp(enemeiesStart, enemiesTarget, (elapsedTime / enemiesTotalTimeForReachingTarget));
             elapsedTime += Time.deltaTime;
             yield return null;
+        }
+
+        foreach(Transform enemy in groupToMove)
+        {
+           enemySpawner.Pool.Release(enemy.gameObject);
         }
 
         yield return new WaitUntil(() => groupToMove.childCount <= 0);
